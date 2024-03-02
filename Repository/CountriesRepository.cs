@@ -1,0 +1,25 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Hotel.API.Controllers;
+using Hotel.API.Data;
+using Microsoft.EntityFrameworkCore;
+
+namespace Hotel.API.Repository
+{
+    public class CountriesRepository : GenericRepository<Country>, ICountriesRepository
+    {
+        private readonly HotelDbContext _context;
+
+        public CountriesRepository(HotelDbContext context) : base(context)
+        {
+            _context = context;
+        }
+
+        public async Task<Country> GetDetails(int id)
+        {
+            return await _context.Countries.Include(x=>x.Hotels).FirstOrDefaultAsync(x=>x.Id == id);
+        }
+    }
+}

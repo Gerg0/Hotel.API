@@ -14,19 +14,19 @@ namespace Hotel.API.Controllers
     [Route("api/[controller]")]
     public class CountriesController : ControllerBase
     {
-        private readonly HotelDbContext _context;
         private readonly IMapper _mapper;
+        private readonly ICountriesRepository _countriesRepository;
 
-        public CountriesController(HotelDbContext context, IMapper mapper)
+        public CountriesController(ICountriesRepository countriesRepository, IMapper mapper)
         {
-            _context = context;
             _mapper = mapper;
+            _countriesRepository = countriesRepository;
         }
         // GET: api/Countries
         [HttpGet]
         public async Task<ActionResult<IEnumerable<GetCountryDto>>> GetCountries()
         {
-            var countries = await _context.Countries.ToListAsync();
+            var countries = await _countriesRepository.GetAllAsync();
             var result = _mapper.Map<List<GetCountryDto>>(countries);
             return result;
         }
@@ -35,7 +35,7 @@ namespace Hotel.API.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<CountryDto>> GetCountry(int id)
         {
-            var country = await _context.Countries.Include(x=>x.Hotels).FirstOrDefaultAsync(x=>x.Id == id);
+            var country = await _countriesRepository.GetDetails(id);
             if(country == null) return NotFound();
             var result = _mapper.Map<CountryDto>(country);
             return result;
@@ -47,19 +47,18 @@ namespace Hotel.API.Controllers
         {
             if (id != updateCountryDto.Id) return BadRequest("Invalid Record Id");
             
-            // _context.Entry(country).State = EntityState.Modified;
-            var country = await _context.Countries.FindAsync(id);
+            var country = await _countriesRepository.GetAsync(id);
             if(country == null) return NotFound();
 
             _mapper.Map(updateCountryDto, country);
             
             try
             {
-                await _context.SaveChangesAsync();
+                await _countriesRepository.UpdateAsync(country);
             }
             catch (DbUpdateConcurrencyException)
             {
-                if(!CountryExists(id)) return NotFound();
+                if(!await CountryExists(id)) return NotFound();
                 throw;
             }
             return NoContent();
@@ -71,8 +70,7 @@ namespace Hotel.API.Controllers
         {
             var country = _mapper.Map<Country>(createCountry);
 
-            _context.Countries.Add(country);
-            await _context.SaveChangesAsync();
+            await _countriesRepository.AddAsync(country);
 
             return CreatedAtAction("GetCountry", new{id=country.Id},country);
         }
@@ -80,16 +78,15 @@ namespace Hotel.API.Controllers
         // DELETE: api/Countries/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteCountry(int id){
-            var country = await _context.Countries.FindAsync(id);
+            var country = await _countriesRepository.GetAsync(id);
             if(country == null) return NotFound();
 
-            _context.Countries.Remove(country);
-            await _context.SaveChangesAsync();
+            await _countriesRepository.DeleteAsync(id);
             return NoContent();
         }
 
-        private bool CountryExists(int id){
-            return _context.Countries.Any(e=>e.Id == id);
+        private async Task<bool> CountryExists(int id){
+            return await _countriesRepository.Exists(id);
         }
     }
 }
