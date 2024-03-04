@@ -5,9 +5,8 @@ using System.Threading.Tasks;
 
 namespace Hotel.API.Dtos.Hotel
 {
-    public class HotelDto : BaseHotelDto
+    public class CreateHotelDto : BaseHotelDto
     {
-        public int Id { get; set; }
-
+        
     }
 }
