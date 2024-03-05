@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using Hotel.API.Data;
 using Hotel.API.Dtos.Country;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -42,6 +43,7 @@ namespace Hotel.API.Controllers
         }
 
         // PUT: api/Countries/5
+        [Authorize]
         [HttpPut("{id}")]
         public async Task<IActionResult> PutCountry(int id, UpdateCountryDto updateCountryDto)
         {
@@ -65,6 +67,7 @@ namespace Hotel.API.Controllers
         }
 
         // POST: api/Countries
+        [Authorize]
         [HttpPost]
         public async Task<ActionResult<Country>> PostCountry(CreateCountryDto createCountry)
         {
@@ -76,6 +79,7 @@ namespace Hotel.API.Controllers
         }
 
         // DELETE: api/Countries/5
+        [Authorize]
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteCountry(int id){
             var country = await _countriesRepository.GetAsync(id);

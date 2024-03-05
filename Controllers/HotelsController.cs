@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using Hotel.API.Contracts;
 using Hotel.API.Dtos.Hotel;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -42,6 +43,7 @@ namespace Hotel.API.Controllers
         }
 
         // PUT: api/Hotels/5
+        [Authorize]
         [HttpPut("{id}")]
         public async Task<IActionResult> PutHotel(int id, HotelDto updateHotelDto)
         {
@@ -65,6 +67,7 @@ namespace Hotel.API.Controllers
         }
 
         // POST: api/Hotels
+        [Authorize]
         [HttpPost]
         public async Task<ActionResult<Hotel.API.Data.Hotel>> PostHotel(CreateHotelDto createHotel)
         {
@@ -76,6 +79,7 @@ namespace Hotel.API.Controllers
         }
 
         // DELETE: api/Hotels/5
+        [Authorize]
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteHotel(int id){
             var hotel = await _hotelsRepository.GetAsync(id);
