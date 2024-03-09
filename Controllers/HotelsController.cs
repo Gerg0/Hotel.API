@@ -2,8 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Asp.Versioning;
 using AutoMapper;
 using Hotel.API.Contracts;
+using Hotel.API.Dtos;
 using Hotel.API.Dtos.Hotel;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -13,9 +15,10 @@ namespace Hotel.API.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
+    [ApiVersion(1.0)]
     public class HotelsController : ControllerBase
     {
-         private readonly IMapper _mapper;
+        private readonly IMapper _mapper;
         private readonly IHotelsRepository _hotelsRepository;
 
         public HotelsController(IHotelsRepository hotelsRepository, IMapper mapper)
@@ -24,12 +27,20 @@ namespace Hotel.API.Controllers
             _hotelsRepository = hotelsRepository;
         }
         // GET: api/Hotels
-        [HttpGet]
+        [HttpGet("GetAll")]
         public async Task<ActionResult<IEnumerable<HotelDto>>> GetHotels()
         {
             var countries = await _hotelsRepository.GetAllAsync();
             var result = _mapper.Map<List<HotelDto>>(countries);
             return result;
+        }
+
+        // GET: api/Hotels/?StartIndex=0&PageSize=25&PageNumber=1
+        [HttpGet]
+        public async Task<ActionResult<PagedResult<HotelDto>>> GetPagedHotels([FromQuery] QueryParameters queryParameters)
+        {
+            var pagedHotelsResult = await _hotelsRepository.GetAllAsync<HotelDto>(queryParameters);
+            return pagedHotelsResult;
         }
 
         // GET: api/Hotels/5

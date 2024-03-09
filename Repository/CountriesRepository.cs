@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using Hotel.API.Controllers;
 using Hotel.API.Data;
 using Microsoft.EntityFrameworkCore;
@@ -12,7 +13,7 @@ namespace Hotel.API.Repository
     {
         private readonly HotelDbContext _context;
 
-        public CountriesRepository(HotelDbContext context) : base(context)
+        public CountriesRepository(HotelDbContext context, IMapper mapper) : base(context,mapper)
         {
             _context = context;
         }

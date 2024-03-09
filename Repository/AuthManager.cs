@@ -10,6 +10,8 @@ using Hotel.API.Contracts;
 using Hotel.API.Data;
 using Hotel.API.Dtos.User;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
 using Microsoft.Identity.Client.Extensions.Msal;
 using Microsoft.IdentityModel.Tokens;
 
@@ -23,8 +25,10 @@ namespace Hotel.API.Repository
         private ApiUser _user;
         private const string _loginProvider = "HotelApi";
         private const string _refreshToken = "RefreshToken";
-        public AuthManager(IMapper mapper, UserManager<ApiUser> userManager, IConfiguration configuration)
+        private readonly ILogger<AuthManager> _logger;
+        public AuthManager(IMapper mapper, UserManager<ApiUser> userManager, IConfiguration configuration, ILogger<AuthManager> logger)
         {
+            _logger = logger;
             _mapper = mapper;
             _userManager = userManager;
             _configuration = configuration;
@@ -45,13 +49,16 @@ namespace Hotel.API.Repository
 
             if (_user is null || !isValidUser)
             {
+                _logger. LogWarning($"User with email {loginDto.Email} was not found");
                 return null;
             }
+            
             var token = await GenerateToken();
 
             return new AuthResponseDto{
                 Token = token,
-                UserId = _user.Id
+                UserId = _user.Id,
+                RefreshToken = await CreateRefreshToken()
             };
         }
 
