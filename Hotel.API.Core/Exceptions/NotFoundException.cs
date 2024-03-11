@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Hotel.API.Exceptions
+namespace Hotel.API.Core.Exceptions
 {
     public class NotFoundException : ApplicationException
     {

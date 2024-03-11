@@ -4,12 +4,12 @@ using System.Linq;
 using System.Net;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
-using Hotel.API.Exceptions;
+using Hotel.API.Core.Exceptions;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 
-namespace Hotel.API.Middleware
+namespace Hotel.API.Core.Middleware
 {
     public class ExceptionMiddleware
     {

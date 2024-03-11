@@ -4,11 +4,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using Hotel.API.Data;
-using Hotel.API.Dtos.Country;
-using Hotel.API.Dtos.Hotel;
-using Hotel.API.Dtos.User;
+using Hotel.API.Core.Dtos.Country;
+using Hotel.API.Core.Dtos.Hotel;
+using Hotel.API.Core.Dtos.User;
 
-namespace Hotel.API.Configurations
+namespace Hotel.API.Core.Configurations
 {
     public class MapperConfig : Profile
     {

@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Hotel.API.Dtos.Country
+namespace Hotel.API.Core.Dtos.Country
 {
     public abstract class BaseCountryDto
     {

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Hotel.API.Dtos.User
+namespace Hotel.API.Core.Dtos.User
 {
     public class AuthResponseDto
     {

@@ -4,8 +4,8 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Asp.Versioning;
-using Hotel.API.Contracts;
-using Hotel.API.Dtos.User;
+using Hotel.API.Core.Contracts;
+using Hotel.API.Core.Dtos.User;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 

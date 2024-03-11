@@ -1,10 +1,10 @@
 using System.Text;
-using Hotel.API.Configurations;
-using Hotel.API.Contracts;
+using Hotel.API.Core.Configurations;
+using Hotel.API.Core.Contracts;
 using Hotel.API.Controllers;
 using Hotel.API.Data;
-using Hotel.API.Middleware;
-using Hotel.API.Repository;
+using Hotel.API.Core.Middleware;
+using Hotel.API.Core.Repository;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;

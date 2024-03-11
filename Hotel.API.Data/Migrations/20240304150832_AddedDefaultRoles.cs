@@ -4,7 +4,7 @@
 
 #pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
 
-namespace Hotel.API.Migrations
+namespace Hotel.API.Data.Migrations
 {
     /// <inheritdoc />
     public partial class AddedDefaultRoles : Migration

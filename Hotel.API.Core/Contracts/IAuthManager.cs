@@ -2,10 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Hotel.API.Dtos.User;
+using Hotel.API.Core.Dtos.User;
 using Microsoft.AspNetCore.Identity;
 
-namespace Hotel.API.Contracts
+namespace Hotel.API.Core.Contracts
 {
     public interface IAuthManager
     {

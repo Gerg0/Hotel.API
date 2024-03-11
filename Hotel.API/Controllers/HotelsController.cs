@@ -1,12 +1,8 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Asp.Versioning;
 using AutoMapper;
-using Hotel.API.Contracts;
-using Hotel.API.Dtos;
-using Hotel.API.Dtos.Hotel;
+using Hotel.API.Core.Contracts;
+using Hotel.API.Core.Dtos;
+using Hotel.API.Core.Dtos.Hotel;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;

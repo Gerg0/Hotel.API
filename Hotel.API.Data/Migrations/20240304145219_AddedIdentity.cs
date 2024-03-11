@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace Hotel.API.Migrations
+namespace Hotel.API.Data.Migrations
 {
     /// <inheritdoc />
     public partial class AddedIdentity : Migration

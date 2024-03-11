@@ -2,10 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Hotel.API.Contracts;
+using Hotel.API.Core.Contracts;
 using Hotel.API.Data;
 
-namespace Hotel.API.Controllers
+namespace Hotel.API.Core.Contracts
 {
     public interface ICountriesRepository : IGenericRepository<Country>
     {

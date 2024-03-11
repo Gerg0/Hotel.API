@@ -1,21 +1,16 @@
-using System;
-using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
-using System.Linq;
 using System.Security.Claims;
 using System.Text;
-using System.Threading.Tasks;
 using AutoMapper;
-using Hotel.API.Contracts;
+using Hotel.API.Core.Contracts;
+using Hotel.API.Core.Dtos.User;
 using Hotel.API.Data;
-using Hotel.API.Dtos.User;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
-using Microsoft.Identity.Client.Extensions.Msal;
 using Microsoft.IdentityModel.Tokens;
 
-namespace Hotel.API.Repository
+namespace Hotel.API.Core.Repository
 {
     public class AuthManager : IAuthManager
     {

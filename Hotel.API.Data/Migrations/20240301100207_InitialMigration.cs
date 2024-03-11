@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace Hotel.API.Migrations
+namespace Hotel.API.Data.Migrations
 {
     /// <inheritdoc />
     public partial class InitialMigration : Migration

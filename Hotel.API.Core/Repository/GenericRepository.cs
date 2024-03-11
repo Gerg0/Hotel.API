@@ -4,12 +4,12 @@ using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
-using Hotel.API.Contracts;
+using Hotel.API.Core.Contracts;
 using Hotel.API.Data;
-using Hotel.API.Dtos;
+using Hotel.API.Core.Dtos;
 using Microsoft.EntityFrameworkCore;
 
-namespace Hotel.API.Repository
+namespace Hotel.API.Core.Repository
 {
     public class GenericRepository<T> : IGenericRepository<T> where T : class
     {

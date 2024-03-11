@@ -5,13 +5,14 @@ using System.Threading.Tasks;
 using Asp.Versioning;
 using AutoMapper;
 using Hotel.API.Data;
-using Hotel.API.Dtos;
-using Hotel.API.Dtos.Country;
-using Hotel.API.Exceptions;
+using Hotel.API.Core.Dtos;
+using Hotel.API.Core.Dtos.Country;
+using Hotel.API.Core.Exceptions;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.OData.Query;
 using Microsoft.EntityFrameworkCore;
+using Hotel.API.Core.Contracts;
 
 namespace Hotel.API.Controllers
 {

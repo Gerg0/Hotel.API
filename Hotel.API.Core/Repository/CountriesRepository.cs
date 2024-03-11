@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
-using Hotel.API.Controllers;
+using Hotel.API.Core.Contracts;
 using Hotel.API.Data;
 using Microsoft.EntityFrameworkCore;
 
-namespace Hotel.API.Repository
+namespace Hotel.API.Core.Repository
 {
     public class CountriesRepository : GenericRepository<Country>, ICountriesRepository
     {

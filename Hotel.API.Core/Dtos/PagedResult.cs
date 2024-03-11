@@ -1,4 +1,4 @@
-namespace Hotel.API.Dtos
+namespace Hotel.API.Core.Dtos
 {
     public class PagedResult<T>
     {
